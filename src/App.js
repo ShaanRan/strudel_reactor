@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+ï»¿import React, { useMemo, useRef, useState } from "react";
 import { evalScope } from "@strudel/core";
 import { StrudelMirror } from "@strudel/codemirror";
 import { drawPianoroll } from "@strudel/draw";
@@ -68,12 +68,29 @@ export default function App() {
         })();
     }, []);
 
+    const [showAlert, setShowAlert] = useState(false);
+
     const handlePreprocess = (playAfter = false) => {
         const editor = editorInstance.current;
         if (!editor) return;
+
         editor.setCode(processedText);
+        setShowAlert(true);
+
         if (playAfter) handlePlay();
     };
+
+    <h2 className="text-center mb-3 fw-bold text-primary">Strudel Reactor â€” Part A</h2>
+
+
+    {
+        showAlert && (
+            <div className="alert alert-info alert-dismissible fade show" role="alert">
+                âœ… Preprocessing complete!
+                <button type="button" className="btn-close" onClick={() => setShowAlert(false)}></button>
+            </div>
+        )
+    }
 
     const handlePlay = async () => {
         await initAudioOnFirstClick();
@@ -93,13 +110,13 @@ export default function App() {
     return (
         <div className="container py-3">
             <h2 className="text-center mb-3 fw-bold text-primary">
-                Strudel Reactor — Part A
+                Strudel Reactor
             </h2>
 
             <div className="row g-3">
                 <div className="col-md-6">
                     <div className="card mb-3 shadow-sm">
-                        <div className="card-header bg-primary text-white fw-semibold">
+                        <div className="card-header gradient fw-semibold">
                             Preprocessor Editor
                         </div>
                         <div className="card-body">
@@ -133,9 +150,10 @@ export default function App() {
                                 >
                                     Preprocess & Play
                                 </button>
-                                <button className="btn btn-outline-primary" onClick={handlePlay}>
-                                    Play
+                                <button className="btn btn-primary glow-btn" onClick={handlePlay}>
+                                    â–¶ Play
                                 </button>
+
                                 <button className="btn btn-outline-danger" onClick={handleStop}>
                                     Stop
                                 </button>
@@ -183,12 +201,20 @@ export default function App() {
                                     value={tempo}
                                     onChange={(e) => setTempo(parseFloat(e.target.value))}
                                 />
-                                <div>Speed: {tempo.toFixed(2)}×</div>
+                                <div className="progress mt-2">
+                                    <div
+                                        className="progress-bar bg-success tempo-bar"
+                                        role="progressbar"
+                                        style={{ width: `${(tempo - 0.5) * 67}%` }}
+                                    ></div>
+                                </div>
+
                             </div>
 
-                            <div className="mt-3 text-muted small">
-                                REPL Status: <strong>{started ? "Running" : "Stopped"}</strong>
-                            </div>
+                            REPL Status:
+                            <strong>{started ? "Running" : "Stopped"}</strong>
+                            {started && <span className="pulse-dot"></span>}
+
                         </div>
                     </div>
                 </div>
@@ -223,7 +249,7 @@ export default function App() {
 
             <footer className="text-center mt-4 text-muted small border-top pt-2">
                 <p>
-                    Part A Submission — Strudel Reactor with Tempo Slider and p1 Controls
+                    Part A Submission â€” Strudel Reactor with Tempo Slider and p1 Controls
                 </p>
             </footer>
         </div>

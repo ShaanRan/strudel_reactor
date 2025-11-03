@@ -1,3 +1,53 @@
+
+.glow-btn {
+    box-shadow: 0 0 12px rgba(0, 153, 255, 0.6);
+    transition: 0.25s ease;
+}
+
+    .glow-btn:hover {
+        box-shadow: 0 0 18px rgba(0, 153, 255, 0.9);
+        transform: translateY(-2px);
+    }
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background: #dc3545;
+    border-radius: 50%;
+    animation: pulse 1s infinite ease-in-out;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
+
+.card-header.gradient {
+    background: linear-gradient(90deg, #007bff, #6610f2);
+    color: white;
+}
+
+
+.tempo-bar {
+    height: 10px;
+}
+
+
 .App {
     text-align: center;
 }
