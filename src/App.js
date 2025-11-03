@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
+import { evalScope } from "@strudel/core";
 import { StrudelMirror } from "@strudel/codemirror";
 import { drawPianoroll } from "@strudel/draw";
 import {
@@ -6,6 +7,7 @@ import {
     getAudioContext,
     webaudioOutput,
     registerSynthSounds,
+
 } from "@strudel/webaudio";
 import { transpiler } from "@strudel/transpiler";
 import { stranger_tune } from "./tunes";
@@ -48,12 +50,17 @@ export default function App() {
                 },
                 prebake: async () => {
                     initAudioOnFirstClick();
-                    await Promise.all([
+
+                    const loadModules = evalScope(
                         import("@strudel/core"),
+                        import("@strudel/draw"),
                         import("@strudel/mini"),
                         import("@strudel/tonal"),
                         import("@strudel/webaudio"),
-                    ]);
+                        import("@strudel/soundfonts")
+                    );
+
+                    await Promise.all([loadModules, registerSynthSounds()]);
                 },
             });
             editorInstance.current = editor;
@@ -90,7 +97,6 @@ export default function App() {
             </h2>
 
             <div className="row g-3">
-                {/* Left: Text editor and controls */}
                 <div className="col-md-6">
                     <div className="card mb-3 shadow-sm">
                         <div className="card-header bg-primary text-white fw-semibold">
@@ -135,7 +141,6 @@ export default function App() {
                                 </button>
                             </div>
 
-                            {/* p1 radio */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">p1 Radio</label>
                                 <div className="form-check">
@@ -164,7 +169,6 @@ export default function App() {
                                 </div>
                             </div>
 
-                            {/* tempo slider */}
                             <div>
                                 <label htmlFor="tempo" className="form-label fw-semibold">
                                     Tempo
@@ -189,7 +193,6 @@ export default function App() {
                     </div>
                 </div>
 
-                {/* Right: Strudel editor */}
                 <div className="col-md-6">
                     <div className="card shadow-sm">
                         <div className="card-header bg-info text-white fw-semibold">
