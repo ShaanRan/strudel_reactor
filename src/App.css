@@ -88,15 +88,8 @@
     }
 }
 
-body {
-    background-color: #f8f9fa;
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
 
-.card {
-    border: none;
-    border-radius: 8px;
-}
+
 
 .card-header {
     font-weight: 600;
@@ -115,3 +108,45 @@ footer {
     border-top: 1px solid #dee2e6;
     padding-top: 10px;
 }
+
+.card {
+    border-radius: 8px;
+}
+
+.card-header.gradient {
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    border-radius: 8px 8px 0 0;
+}
+
+body {
+    background: #f8f9fa;
+    font-family: "Inter", sans-serif;
+}
+
+#strudel-editor-root {
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+.card-body {
+    padding: 1rem 1.25rem;
+}
+
+#roll {
+    border: 1px solid #dee2e6;
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+svg {
+    font-family: "Inter", sans-serif;
+}
+
+    svg text {
+        fill: #555;
+        font-size: 0.75rem;
+    }
