@@ -1,4 +1,5 @@
 
+
 .glow-btn {
     box-shadow: 0 0 12px rgba(0, 153, 255, 0.6);
     transition: 0.25s ease;
@@ -8,6 +9,7 @@
         box-shadow: 0 0 18px rgba(0, 153, 255, 0.9);
         transform: translateY(-2px);
     }
+
 
 .pulse-dot {
     width: 12px;
@@ -37,116 +39,17 @@
 }
 
 
-.card-header.gradient {
-    background: linear-gradient(90deg, #007bff, #6610f2);
-    color: white;
-}
-
-
-.tempo-bar {
-    height: 10px;
-}
-
-
-.App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-
-
-.card-header {
-    font-weight: 600;
-}
-
-.form-range {
-    accent-color: #0d6efd;
-}
-
-textarea.form-control {
-    font-family: monospace;
-}
-
-footer {
-    margin-top: 30px;
-    border-top: 1px solid #dee2e6;
-    padding-top: 10px;
-}
 
 .card {
     border-radius: 8px;
 }
 
-.card-header.gradient {
-    background: linear-gradient(90deg, #0d6efd, #6610f2);
-    color: white !important;
+.card-header {
     font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-    border-radius: 8px 8px 0 0;
 }
 
-body {
-    background: #f8f9fa;
-    font-family: "Inter", sans-serif;
-}
-
-#strudel-editor-root {
-    background: #ffffff;
-    border-radius: 6px;
-}
-
-.card-body {
-    padding: 1rem 1.25rem;
-}
-
-#roll {
-    border: 1px solid #dee2e6;
-    background: #ffffff;
-    border-radius: 6px;
-}
-
-svg {
-    font-family: "Inter", sans-serif;
-}
-
-    svg text {
-        fill: #555;
-        font-size: 0.75rem;
+    .card-header.gradient {
+        background: linear-gradient(90deg, #0d6efd, #6610f2);
+        color: white !important;
+        font-size: 1.05rem;
     }

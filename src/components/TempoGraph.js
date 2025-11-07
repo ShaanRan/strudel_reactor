@@ -10,7 +10,7 @@ export default function TempoGraph({ tempoHistory }) {
         const svg = d3.select(d3Ref.current);
         svg.selectAll("*").remove();
 
-        const width = 500;
+        const width = 520;
         const height = 150;
         const margin = { top: 10, right: 20, bottom: 30, left: 40 };
 
@@ -46,7 +46,7 @@ export default function TempoGraph({ tempoHistory }) {
     return (
         <svg
             ref={d3Ref}
-            width="500"
+            width="520"
             height="150"
             style={{ width: "100%", display: "block" }}
         ></svg>
