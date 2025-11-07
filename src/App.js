@@ -9,7 +9,6 @@ import "./App.css";
 export default function App() {
     const editorRef = useRef(null);
 
-    /* ---------------- State ---------------- */
     const [procText, setProcText] = useState(stranger_tune);
     const [p1Hush, setP1Hush] = useState(false);
     const [tempo, setTempo] = useState(1.0);
@@ -22,7 +21,6 @@ export default function App() {
     const [patternIndex, setPatternIndex] = useState(0);
     const [extraDrums, setExtraDrums] = useState(true);
 
-    /* ---------------- Preprocessor ---------------- */
     function preprocess(text) {
         return text
             .replace(/<p1_Radio>/g, p1Hush ? "_" : "")
@@ -63,8 +61,8 @@ export default function App() {
                 </div>
             )}
 
-            <h2 className="text-center mb-3 fw-bold text-primary">
-                Strudel Reactor — Part B
+            <h2 className="text-center mb-4 fw-bold page-header">
+                🎶 Strudel Reactor — Part B 🎛️
             </h2>
 
             <div className="row g-4">
@@ -82,7 +80,9 @@ export default function App() {
                                 value={procText}
                                 onChange={(e) => setProcText(e.target.value)}
                             />
-                            <small className="text-muted">Use tags: &lt;p1_Radio&gt;, &lt;tempo&gt;, &lt;master_gain&gt;, &lt;pattern_index&gt;, &lt;reverb_amount&gt;</small>
+                            <small className="text-muted">
+                                Tags: &lt;p1_Radio&gt;, &lt;tempo&gt;, &lt;master_gain&gt;, &lt;pattern_index&gt;, &lt;reverb_amount&gt;
+                            </small>
                         </div>
                     </div>
 
@@ -197,29 +197,145 @@ export default function App() {
 
                 </div>
 
-                <div className="col-md-6 right-column-container">
+                <div className="col-md-6">
 
-                    <div className="card shadow-sm right-column-card">
+                    <div className="card shadow-sm mb-3 producer-card">
                         <div className="card-header gradient fw-semibold">
-                            Strudel REPL & Visualisation
+                            🎛️ Producer Control Deck
                         </div>
 
                         <div className="card-body">
 
-                            <StrudelEditor ref={editorRef} code={processedText} />
+                            <div className="accordion" id="producerAccordion">
 
-                            <div className="mt-3 pt-3 border-top">
-                                <TempoGraph tempoHistory={tempoHistory} />
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#eqBox">
+                                            🎚️ Equalizer (EQ)
+                                        </button>
+                                    </h2>
+                                    <div id="eqBox" className="accordion-collapse collapse">
+                                        <div className="accordion-body">
+
+                                            <label className="form-label">Bass</label>
+                                            <input type="range" min="-1" max="1" step="0.1" className="form-range" />
+
+                                            <label className="form-label mt-2">Mid</label>
+                                            <input type="range" min="-1" max="1" step="0.1" className="form-range" />
+
+                                            <label className="form-label mt-2">Treble</label>
+                                            <input type="range" min="-1" max="1" step="0.1" className="form-range" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#waveBox">
+                                            🎵 Synth Waveform
+                                        </button>
+                                    </h2>
+                                    <div id="waveBox" className="accordion-collapse collapse">
+                                        <div className="accordion-body">
+                                            <select className="form-select">
+                                                <option value="saw">Saw</option>
+                                                <option value="square">Square</option>
+                                                <option value="sine">Sine</option>
+                                                <option value="triangle">Triangle</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#filterBox">
+                                            🎧 Filters
+                                        </button>
+                                    </h2>
+                                    <div id="filterBox" className="accordion-collapse collapse">
+                                        <div className="accordion-body">
+
+                                            <label className="form-label">Low-Pass Filter</label>
+                                            <input type="range" min="200" max="15000" step="100"
+                                                className="form-range" />
+
+                                            <label className="form-label mt-2">High-Pass Filter</label>
+                                            <input type="range" min="20" max="2000" step="50"
+                                                className="form-range" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#drumBox">
+                                            🥁 Drum Machine
+                                        </button>
+                                    </h2>
+                                    <div id="drumBox" className="accordion-collapse collapse">
+                                        <div className="accordion-body">
+
+                                            <div className="form-check mb-2">
+                                                <input className="form-check-input" type="checkbox" />
+                                                <label className="form-check-label">Kick</label>
+                                            </div>
+
+                                            <div className="form-check mb-2">
+                                                <input className="form-check-input" type="checkbox" />
+                                                <label className="form-check-label">Snare</label>
+                                            </div>
+
+                                            <div className="form-check mb-2">
+                                                <input className="form-check-input" type="checkbox" />
+                                                <label className="form-check-label">Hi-Hat</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Reverb Modes */}
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#reverbBox">
+                                            🎤 Reverb Modes
+                                        </button>
+                                    </h2>
+                                    <div id="reverbBox" className="accordion-collapse collapse">
+                                        <div className="accordion-body">
+                                            <select className="form-select">
+                                                <option value="room">Room</option>
+                                                <option value="hall">Hall</option>
+                                                <option value="plate">Plate</option>
+                                                <option value="cathedral">Cathedral</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>
                     </div>
 
+
+                    <StrudelEditor ref={editorRef} code={processedText} />
+
+                    <TempoGraph tempoHistory={tempoHistory} />
+
                 </div>
             </div>
 
             <footer className="text-center mt-4 text-muted small border-top pt-2">
-                Part B Submission — Enhanced Controls + Improved UI + D3 Visualisation
+                Part B Submission — Enhanced Controls + Improved UI + Producer Deck + D3 Visualisation
             </footer>
         </div>
     );
