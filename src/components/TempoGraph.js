@@ -44,18 +44,11 @@ export default function TempoGraph({ tempoHistory }) {
     }, [tempoHistory]);
 
     return (
-        <div className="card shadow-sm mt-3">
-            <div className="card-header gradient fw-semibold">
-                Tempo History Graph (D3.js)
-            </div>
-            <div className="card-body">
-                <svg
-                    ref={d3Ref}
-                    width="500"
-                    height="150"
-                    style={{ width: "100%", display: "block" }}
-                ></svg>
-            </div>
-        </div>
+        <svg
+            ref={d3Ref}
+            width="500"
+            height="150"
+            style={{ width: "100%", display: "block" }}
+        ></svg>
     );
 }

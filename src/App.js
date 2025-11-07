@@ -236,10 +236,21 @@ export default function App() {
                     </div>
                 </div>
 
-                <div className="col-md-6">
-                    <StrudelEditor ref={editorRef} code={processedText} />
-                    <TempoGraph tempoHistory={tempoHistory} />
+                <div className="card shadow-sm">
+                    <div className="card-header gradient fw-semibold">
+                        Strudel REPL & Visualisation
+                    </div>
+                    <div className="card-body">
+
+                        <StrudelEditor ref={editorRef} code={processedText} />
+
+                        <div className="mt-3 pt-3 border-top">
+                            <TempoGraph tempoHistory={tempoHistory} />
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
 
             <footer className="text-center mt-4 text-muted small border-top pt-2">
