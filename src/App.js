@@ -1,4 +1,5 @@
-﻿import React, { useMemo, useRef, useState } from "react";
+﻿
+import React, { useMemo, useRef, useState } from "react";
 import { StrudelMirror } from "@strudel/codemirror";
 import { drawPianoroll } from "@strudel/draw";
 import {
@@ -164,8 +165,6 @@ export default function App() {
             <div className="row g-3">
 
                 <div className="col-md-6">
-
-
                     <div className="card mb-3 shadow-sm">
                         <div className="card-header gradient fw-semibold">
                             Preprocessor Editor
@@ -307,3 +306,4 @@ export default function App() {
         </div>
     );
 }
+
