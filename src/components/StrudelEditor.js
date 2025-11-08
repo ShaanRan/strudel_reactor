@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import React, {
+    useEffect,
+    useRef,
+    forwardRef,
+    useImperativeHandle,
+} from "react";
+
 import { StrudelMirror } from "@strudel/codemirror";
 import { drawPianoroll } from "@strudel/draw";
 import { transpiler } from "@strudel/transpiler";
@@ -11,7 +17,7 @@ import {
     registerSynthSounds,
 } from "@strudel/webaudio";
 
-const StrudelEdit = forwardRef(({ code }, ref) => {
+const StrudelEditor = forwardRef(({ code }, ref) => {
     const editorRoot = useRef(null);
     const canvasRef = useRef(null);
     const editorInstance = useRef(null);
@@ -29,7 +35,13 @@ const StrudelEdit = forwardRef(({ code }, ref) => {
                 drawTime: [-2, 2],
                 onDraw: (haps, time) => {
                     const ctx = canvasRef.current.getContext("2d");
-                    drawPianoroll({ haps, time, ctx, drawTime: [-2, 2], fold: 0 });
+                    drawPianoroll({
+                        haps,
+                        time,
+                        ctx,
+                        drawTime: [-2, 2],
+                        fold: 0,
+                    });
                 },
 
                 prebake: async () => {
@@ -53,8 +65,6 @@ const StrudelEdit = forwardRef(({ code }, ref) => {
         })();
     }, []);
 
-
-
     useEffect(() => {
         if (editorInstance.current) {
             editorInstance.current.setCode(code);
@@ -63,21 +73,17 @@ const StrudelEdit = forwardRef(({ code }, ref) => {
 
     useImperativeHandle(ref, () => ({
         play: async () => {
-            if (editorInstance.current?.evaluate) {
-                await initAudioOnFirstClick();
-                await editorInstance.current.evaluate();
-            }
+            await initAudioOnFirstClick();
+            await editorInstance.current?.evaluate?.();
         },
         stop: async () => {
-            if (editorInstance.current?.stop) {
-                await editorInstance.current.stop();
-            }
+            await editorInstance.current?.stop?.();
         },
     }));
 
     return (
         <div className="card shadow-sm">
-            <div className="card-header gradient fw-semibold">Strudel REPL</div>
+            <div className="card-header gradient fw-semibold">Strudel Editor</div>
             <div className="card-body">
                 <div
                     ref={editorRoot}
@@ -100,4 +106,4 @@ const StrudelEdit = forwardRef(({ code }, ref) => {
     );
 });
 
-export default StrudelEdit;
+export default StrudelEditor;

@@ -16,15 +16,33 @@ export default function App() {
     const [started, setStarted] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
-    function preprocess(text, p1Hush, tempo) {
+    const [masterGain, setMasterGain] = useState(1.0);
+    const [reverb, setReverb] = useState(0.6);
+    const [patternIndex, setPatternIndex] = useState(0);
+    const [extraDrums, setExtraDrums] = useState(true);
+
+    function preprocess(text, p1Hush, tempo, masterGain, reverb, patternIndex, extraDrums) {
         let processed = text.replace(/<p1_Radio>/g, p1Hush ? "_" : "");
         processed = processed.replace(/<tempo>/g, tempo.toFixed(2));
+        processed = processed.replace(/<master_gain>/g, masterGain.toFixed(2));
+        processed = processed.replace(/<reverb_amount>/g, reverb.toFixed(2));
+        processed = processed.replace(/<pattern_index>/g, patternIndex.toString());
+        processed = processed.replace(/<drums2_gain>/g, extraDrums ? "1" : "0");
         return processed;
     }
 
     const processedText = useMemo(
-        () => preprocess(procText, p1Hush, tempo),
-        [procText, p1Hush, tempo]
+        () =>
+            preprocess(
+                procText,
+                p1Hush,
+                tempo,
+                masterGain,
+                reverb,
+                patternIndex,
+                extraDrums
+            ),
+        [procText, p1Hush, tempo, masterGain, reverb, patternIndex, extraDrums]
     );
 
     const handlePreprocess = (playAfter = false) => {
@@ -44,7 +62,6 @@ export default function App() {
 
     return (
         <div className="container py-3">
-
             {showAlert && (
                 <div className="alert alert-info alert-dismissible fade show" role="alert">
                     ✅ Preprocessing complete!
@@ -53,15 +70,15 @@ export default function App() {
             )}
 
             <h2 className="text-center mb-3 fw-bold text-primary">
-                Strudel Reactor — Part A
+                Strudel Reactor — Part B
             </h2>
 
             <div className="row g-3">
-
                 <div className="col-md-6">
-
                     <div className="card mb-3 shadow-sm">
-                        <div className="card-header gradient fw-semibold">Preprocessor Editor</div>
+                        <div className="card-header gradient fw-semibold">
+                            Preprocessor Editor
+                        </div>
                         <div className="card-body">
                             <textarea
                                 className="form-control mb-2"
@@ -69,7 +86,9 @@ export default function App() {
                                 value={procText}
                                 onChange={(e) => setProcText(e.target.value)}
                             />
-                            <small className="text-muted">Use &lt;p1_Radio&gt; and &lt;tempo&gt; tags.</small>
+                            <small className="text-muted">
+                                Use &lt;p1_Radio&gt; and &lt;tempo&gt; tags.
+                            </small>
                         </div>
                     </div>
 
@@ -78,35 +97,21 @@ export default function App() {
                         <div className="card-body">
 
                             <div className="d-flex flex-wrap gap-2 mb-3">
-
-                                <button
-                                    className="btn btn-primary"
-                                    onClick={() => handlePreprocess(false)}
-                                >
+                                <button className="btn btn-primary" onClick={() => handlePreprocess(false)}>
                                     Preprocess
                                 </button>
 
-                                <button
-                                    className="btn btn-success"
-                                    onClick={() => handlePreprocess(true)}
-                                >
+                                <button className="btn btn-success" onClick={() => handlePreprocess(true)}>
                                     Preprocess & Play
                                 </button>
 
-                                <button
-                                    className="btn btn-primary glow-btn"
-                                    onClick={handlePlay}
-                                >
+                                <button className="btn btn-primary glow-btn" onClick={handlePlay}>
                                     ▶ Play
                                 </button>
 
-                                <button
-                                    className="btn btn-outline-danger"
-                                    onClick={handleStop}
-                                >
+                                <button className="btn btn-outline-danger" onClick={handleStop}>
                                     Stop
                                 </button>
-
                             </div>
 
                             <div className="mb-3">
@@ -133,7 +138,7 @@ export default function App() {
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="mb-3">
                                 <label className="form-label fw-semibold">Tempo</label>
 
                                 <input
@@ -163,29 +168,83 @@ export default function App() {
                                 </div>
                             </div>
 
+                            <hr className="my-3" />
+
+                            <div className="mb-3">
+                                <label className="form-label fw-semibold">Master Volume</label>
+                                <input
+                                    type="range"
+                                    className="form-range"
+                                    min="0"
+                                    max="2"
+                                    step="0.1"
+                                    value={masterGain}
+                                    onChange={(e) => setMasterGain(parseFloat(e.target.value))}
+                                />
+                                <div>Gain: {masterGain.toFixed(1)}</div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label fw-semibold">Reverb Amount</label>
+                                <input
+                                    type="range"
+                                    className="form-range"
+                                    min="0"
+                                    max="1"
+                                    step="0.05"
+                                    value={reverb}
+                                    onChange={(e) => setReverb(parseFloat(e.target.value))}
+                                />
+                                <div>Room: {reverb.toFixed(2)}</div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label className="form-label fw-semibold">Pattern Variant</label>
+                                <select
+                                    className="form-select"
+                                    value={patternIndex}
+                                    onChange={(e) => setPatternIndex(parseInt(e.target.value))}
+                                >
+                                    <option value={0}>Variant A (Default)</option>
+                                    <option value={1}>Variant B</option>
+                                    <option value={2}>Variant C</option>
+                                </select>
+                                <small className="text-muted">
+                                    Changes which drum/bass pattern is used.
+                                </small>
+                            </div>
+
+                            <div className="form-check mb-2">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id="extraDrums"
+                                    checked={extraDrums}
+                                    onChange={(e) => setExtraDrums(e.target.checked)}
+                                />
+                                <label className="form-check-label" htmlFor="extraDrums">
+                                    Enable extra drums layer
+                                </label>
+                            </div>
+
                             <div className="mt-3 text-muted small">
                                 REPL Status:
                                 <strong> {started ? "Running" : "Stopped"}</strong>
                                 {started && <span className="pulse-dot"></span>}
                             </div>
-
                         </div>
                     </div>
                 </div>
 
                 <div className="col-md-6">
-
                     <StrudelEditor ref={editorRef} code={processedText} />
-
                     <TempoGraph tempoHistory={tempoHistory} />
-
                 </div>
             </div>
 
             <footer className="text-center mt-4 text-muted small border-top pt-2">
-                Part A Submission — Enhanced UI + D3 Visualisation
+                Part B Submission — Extended Controls & Audio Interaction
             </footer>
-
         </div>
     );
 }
