@@ -2,12 +2,14 @@
 
 import StrudelEditor from "./components/StrudelEditor";
 import TempoGraph from "./components/TempoGraph";
+import PianoRoll from "./components/PianoRoll";
 
 import { stranger_tune } from "./tunes";
 import "./App.css";
 
 export default function App() {
     const editorRef = useRef(null);
+    const [pianoCanvas, setPianoCanvas] = useState(null);
 
     const [procText, setProcText] = useState(stranger_tune);
     const [p1Hush, setP1Hush] = useState(false);
@@ -55,9 +57,9 @@ export default function App() {
         <div className="container py-3">
 
             {showAlert && (
-                <div className="alert alert-info alert-dismissible fade show" role="alert">
+                <div className="alert alert-info alert-dismissible fade show">
                     ✅ Preprocessing complete!
-                    <button className="btn-close" onClick={() => setShowAlert(false)}></button>
+                    <button className="btn-close" onClick={() => setShowAlert(false)} />
                 </div>
             )}
 
@@ -66,13 +68,10 @@ export default function App() {
             </h2>
 
             <div className="row g-4">
-
                 <div className="col-md-6">
 
                     <div className="card mb-3 shadow-sm">
-                        <div className="card-header gradient fw-semibold">
-                            Preprocessor Editor
-                        </div>
+                        <div className="card-header gradient fw-semibold">Preprocessor Editor</div>
                         <div className="card-body">
                             <textarea
                                 className="form-control mb-2"
@@ -87,9 +86,7 @@ export default function App() {
                     </div>
 
                     <div className="card shadow-sm">
-                        <div className="card-header gradient fw-semibold">
-                            Controls
-                        </div>
+                        <div className="card-header gradient fw-semibold">Controls</div>
 
                         <div className="card-body">
 
@@ -102,13 +99,11 @@ export default function App() {
 
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">p1 Radio</label>
-
                                 <div className="form-check">
                                     <input type="radio" className="form-check-input"
                                         checked={!p1Hush} onChange={() => setP1Hush(false)} />
                                     <label className="form-check-label">ON</label>
                                 </div>
-
                                 <div className="form-check">
                                     <input type="radio" className="form-check-input"
                                         checked={p1Hush} onChange={() => setP1Hush(true)} />
@@ -132,11 +127,6 @@ export default function App() {
                                     }}
                                 />
                                 <div>Speed: {tempo.toFixed(2)}×</div>
-
-                                <div className="progress mt-2">
-                                    <div className="progress-bar bg-success tempo-bar"
-                                        style={{ width: `${(tempo - 0.5) * 67}%` }}></div>
-                                </div>
                             </div>
 
                             <div className="mb-3">
@@ -189,154 +179,51 @@ export default function App() {
                             <div className="mt-3 text-muted small">
                                 REPL Status:
                                 <strong> {started ? "Running" : "Stopped"}</strong>
-                                {started && <span className="pulse-dot"></span>}
                             </div>
 
                         </div>
                     </div>
-
                 </div>
 
                 <div className="col-md-6">
 
                     <div className="card shadow-sm mb-3 producer-card">
-                        <div className="card-header gradient fw-semibold">
-                            🎛️ Producer Control Deck
+                        <div className="card-header gradient fw-semibold">🎛️ Producer Control Deck</div>
+                        <div className="card-body">
+                            <p className="text-secondary small">Additional audio shaping controls…</p>
                         </div>
+                    </div>
+
+                    <div className="card shadow-sm wide-repl-card mb-4">
+                        <div className="card-header gradient fw-semibold">🎼 Strudel Live Editor</div>
 
                         <div className="card-body">
 
-                            <div className="accordion" id="producerAccordion">
+                            <StrudelEditor
+                                ref={editorRef}
+                                code={processedText}
+                                pianoCanvas={pianoCanvas}
+                            />
 
-                                <div className="accordion-item glass-acc">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed"
-                                            data-bs-toggle="collapse" data-bs-target="#eqBox">
-                                            🎚️ Equalizer (EQ)
-                                        </button>
-                                    </h2>
-                                    <div id="eqBox" className="accordion-collapse collapse">
-                                        <div className="accordion-body">
+                            <div className="mt-4">
+                                <h5 className="fw-semibold text-light">🎹 Piano Roll</h5>
+                                <PianoRoll onCanvasReady={setPianoCanvas} />
+                            </div>
 
-                                            <label className="form-label">Bass</label>
-                                            <input type="range" min="-1" max="1" step="0.1" className="form-range" />
-
-                                            <label className="form-label mt-2">Mid</label>
-                                            <input type="range" min="-1" max="1" step="0.1" className="form-range" />
-
-                                            <label className="form-label mt-2">Treble</label>
-                                            <input type="range" min="-1" max="1" step="0.1" className="form-range" />
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="accordion-item glass-acc">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed"
-                                            data-bs-toggle="collapse" data-bs-target="#waveBox">
-                                            🎵 Synth Waveform
-                                        </button>
-                                    </h2>
-                                    <div id="waveBox" className="accordion-collapse collapse">
-                                        <div className="accordion-body">
-                                            <select className="form-select">
-                                                <option value="saw">Saw</option>
-                                                <option value="square">Square</option>
-                                                <option value="sine">Sine</option>
-                                                <option value="triangle">Triangle</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="accordion-item glass-acc">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed"
-                                            data-bs-toggle="collapse" data-bs-target="#filterBox">
-                                            🎧 Filters
-                                        </button>
-                                    </h2>
-                                    <div id="filterBox" className="accordion-collapse collapse">
-                                        <div className="accordion-body">
-
-                                            <label className="form-label">Low-Pass Filter</label>
-                                            <input type="range" min="200" max="15000" step="100"
-                                                className="form-range" />
-
-                                            <label className="form-label mt-2">High-Pass Filter</label>
-                                            <input type="range" min="20" max="2000" step="50"
-                                                className="form-range" />
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="accordion-item glass-acc">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed"
-                                            data-bs-toggle="collapse" data-bs-target="#drumBox">
-                                            🥁 Drum Machine
-                                        </button>
-                                    </h2>
-                                    <div id="drumBox" className="accordion-collapse collapse">
-                                        <div className="accordion-body">
-
-                                            <div className="form-check mb-2">
-                                                <input className="form-check-input" type="checkbox" />
-                                                <label className="form-check-label">Kick</label>
-                                            </div>
-
-                                            <div className="form-check mb-2">
-                                                <input className="form-check-input" type="checkbox" />
-                                                <label className="form-check-label">Snare</label>
-                                            </div>
-
-                                            <div className="form-check mb-2">
-                                                <input className="form-check-input" type="checkbox" />
-                                                <label className="form-check-label">Hi-Hat</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Reverb Modes */}
-                                <div className="accordion-item glass-acc">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed"
-                                            data-bs-toggle="collapse" data-bs-target="#reverbBox">
-                                            🎤 Reverb Modes
-                                        </button>
-                                    </h2>
-                                    <div id="reverbBox" className="accordion-collapse collapse">
-                                        <div className="accordion-body">
-                                            <select className="form-select">
-                                                <option value="room">Room</option>
-                                                <option value="hall">Hall</option>
-                                                <option value="plate">Plate</option>
-                                                <option value="cathedral">Cathedral</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div className="mt-4">
+                                <TempoGraph tempoHistory={tempoHistory} />
                             </div>
 
                         </div>
                     </div>
 
-
-                    <StrudelEditor ref={editorRef} code={processedText} />
-
-                    <TempoGraph tempoHistory={tempoHistory} />
-
                 </div>
             </div>
 
             <footer className="text-center mt-4 text-muted small border-top pt-2">
-                Part B Submission — Enhanced Controls + Improved UI + Producer Deck + D3 Visualisation
+                Part B — Enhanced UI + Producer Deck + Piano Roll + D3 Visualisation
             </footer>
+
         </div>
     );
 }
