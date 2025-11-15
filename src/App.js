@@ -2,14 +2,12 @@
 
 import StrudelEditor from "./components/StrudelEditor";
 import TempoGraph from "./components/TempoGraph";
-import PianoRoll from "./components/PianoRoll";
 
 import { stranger_tune } from "./tunes";
 import "./App.css";
 
 export default function App() {
     const editorRef = useRef(null);
-    const [pianoCanvas, setPianoCanvas] = useState(null);
 
     const [procText, setProcText] = useState(stranger_tune);
     const [p1Hush, setP1Hush] = useState(false);
@@ -57,9 +55,9 @@ export default function App() {
         <div className="container py-3">
 
             {showAlert && (
-                <div className="alert alert-info alert-dismissible fade show">
+                <div className="alert alert-info alert-dismissible fade show" role="alert">
                     ✅ Preprocessing complete!
-                    <button className="btn-close" onClick={() => setShowAlert(false)} />
+                    <button className="btn-close" onClick={() => setShowAlert(false)}></button>
                 </div>
             )}
 
@@ -68,10 +66,34 @@ export default function App() {
             </h2>
 
             <div className="row g-4">
+
+                {/* LEFT COLUMN — FULL MUSIC VISUAL AREA */}
                 <div className="col-md-6">
 
+                    {/* Strudel Code Editor + Piano Roll */}
+                    <div className="card shadow-sm mb-3">
+                        <div className="card-header gradient fw-semibold">
+                            🎼 Strudel Live Editor
+                        </div>
+
+                        <div className="card-body">
+                            <StrudelEditor ref={editorRef} code={processedText} />
+
+                            <div className="mt-4">
+                                <TempoGraph tempoHistory={tempoHistory} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* RIGHT COLUMN — Preprocessor + Controls + Deck */}
+                <div className="col-md-6">
+
+                    {/* Preprocessor Editor */}
                     <div className="card mb-3 shadow-sm">
-                        <div className="card-header gradient fw-semibold">Preprocessor Editor</div>
+                        <div className="card-header gradient fw-semibold">
+                            Preprocessor Editor
+                        </div>
                         <div className="card-body">
                             <textarea
                                 className="form-control mb-2"
@@ -85,8 +107,11 @@ export default function App() {
                         </div>
                     </div>
 
-                    <div className="card shadow-sm">
-                        <div className="card-header gradient fw-semibold">Controls</div>
+                    {/* Controls */}
+                    <div className="card shadow-sm mb-3">
+                        <div className="card-header gradient fw-semibold">
+                            Controls
+                        </div>
 
                         <div className="card-body">
 
@@ -97,28 +122,28 @@ export default function App() {
                                 <button className="btn btn-outline-danger" onClick={handleStop}>Stop</button>
                             </div>
 
+                            {/* p1 Radio */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">p1 Radio</label>
                                 <div className="form-check">
-                                    <input type="radio" className="form-check-input"
-                                        checked={!p1Hush} onChange={() => setP1Hush(false)} />
+                                    <input type="radio" checked={!p1Hush} onChange={() => setP1Hush(false)} className="form-check-input" />
                                     <label className="form-check-label">ON</label>
                                 </div>
                                 <div className="form-check">
-                                    <input type="radio" className="form-check-input"
-                                        checked={p1Hush} onChange={() => setP1Hush(true)} />
+                                    <input type="radio" checked={p1Hush} onChange={() => setP1Hush(true)} className="form-check-input" />
                                     <label className="form-check-label">HUSH</label>
                                 </div>
                             </div>
 
+                            {/* Tempo */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">Tempo</label>
                                 <input
                                     type="range"
-                                    className="form-range"
                                     min="0.5"
                                     max="2"
                                     step="0.05"
+                                    className="form-range"
                                     value={tempo}
                                     onChange={(e) => {
                                         const t = parseFloat(e.target.value);
@@ -129,91 +154,67 @@ export default function App() {
                                 <div>Speed: {tempo.toFixed(2)}×</div>
                             </div>
 
+                            {/* Volume */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">Master Volume</label>
                                 <input
                                     type="range"
-                                    className="form-range"
                                     min="0.3"
                                     max="2"
                                     step="0.1"
+                                    className="form-range"
                                     value={masterGain}
                                     onChange={(e) => setMasterGain(parseFloat(e.target.value))}
                                 />
                                 <div>Gain: {masterGain.toFixed(1)}</div>
                             </div>
 
+                            {/* Reverb */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">Reverb Amount</label>
                                 <input
                                     type="range"
-                                    className="form-range"
                                     min="0"
                                     max="1"
                                     step="0.05"
+                                    className="form-range"
                                     value={reverb}
                                     onChange={(e) => setReverb(parseFloat(e.target.value))}
                                 />
                                 <div>Reverb: {reverb.toFixed(2)}</div>
                             </div>
 
-                            <div className="mb-3">
-                                <label className="form-label fw-semibold">Pattern</label>
-                                <select
-                                    className="form-select"
-                                    value={patternIndex}
-                                    onChange={(e) => setPatternIndex(parseInt(e.target.value))}
-                                >
-                                    <option value={0}>Pattern 1</option>
-                                    <option value={1}>Pattern 2</option>
-                                </select>
-                            </div>
-
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox"
-                                    checked={extraDrums}
-                                    onChange={() => setExtraDrums(!extraDrums)} />
-                                <label className="form-check-label">Enable Extra Drums</label>
-                            </div>
-
-                            <div className="mt-3 text-muted small">
-                                REPL Status:
-                                <strong> {started ? "Running" : "Stopped"}</strong>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-md-6">
-
-                    <div className="card shadow-sm mb-3 producer-card">
-                        <div className="card-header gradient fw-semibold">🎛️ Producer Control Deck</div>
-                        <div className="card-body">
-                            <p className="text-secondary small">Additional audio shaping controls…</p>
                         </div>
                     </div>
 
-                    <div className="card shadow-sm wide-repl-card mb-4">
-                        <div className="card-header gradient fw-semibold">🎼 Strudel Live Editor</div>
-
+                    {/* Producer Deck */}
+                    <div className="card shadow-sm">
+                        <div className="card-header gradient fw-semibold">
+                            🎛️ Producer Control Deck
+                        </div>
                         <div className="card-body">
+                            <div className="accordion" id="producerAccordion">
 
-                            <StrudelEditor
-                                ref={editorRef}
-                                code={processedText}
-                                pianoCanvas={pianoCanvas}
-                            />
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header">
+                                        <button className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#eqBox">
+                                            🎚️ Equalizer (EQ)
+                                        </button>
+                                    </h2>
 
-                            <div className="mt-4">
-                                <h5 className="fw-semibold text-light">🎹 Piano Roll</h5>
-                                <PianoRoll onCanvasReady={setPianoCanvas} />
+                                    <div id="eqBox" className="accordion-collapse collapse">
+                                        <div className="accordion-body">
+                                            <label>Bass</label>
+                                            <input type="range" className="form-range" min="-1" max="1" step="0.1" />
+                                            <label className="mt-2">Mid</label>
+                                            <input type="range" className="form-range" min="-1" max="1" step="0.1" />
+                                            <label className="mt-2">Treble</label>
+                                            <input type="range" className="form-range" min="-1" max="1" step="0.1" />
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-
-                            <div className="mt-4">
-                                <TempoGraph tempoHistory={tempoHistory} />
-                            </div>
-
                         </div>
                     </div>
 
@@ -221,9 +222,8 @@ export default function App() {
             </div>
 
             <footer className="text-center mt-4 text-muted small border-top pt-2">
-                Part B — Enhanced UI + Producer Deck + Piano Roll + D3 Visualisation
+                Part B Submission — Enhanced Controls + Improved UI + Producer Deck + D3 Visualisation
             </footer>
-
         </div>
     );
 }

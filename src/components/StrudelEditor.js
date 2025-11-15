@@ -1,12 +1,6 @@
-﻿import React, {
-    useEffect,
-    useRef,
-    forwardRef,
-    useImperativeHandle
-} from "react";
-
+﻿import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import { StrudelMirror } from "@strudel/codemirror";
-import { drawPianoroll } from "@strudel/draw";        // <-- MUST BE HERE
+import { drawPianoroll } from "@strudel/draw";
 import { transpiler } from "@strudel/transpiler";
 import { evalScope } from "@strudel/core";
 import {
@@ -16,43 +10,38 @@ import {
     registerSynthSounds,
 } from "@strudel/webaudio";
 
-const StrudelEditor = forwardRef(({ code, pianoCanvas }, ref) => {
+const StrudelEditor = forwardRef(({ code }, ref) => {
     const editorRoot = useRef(null);
+    const canvasRef = useRef(null);
     const editorInstance = useRef(null);
 
     useEffect(() => {
-        if (!pianoCanvas) return;   // 👈 wait until the canvas exists
-
         (async () => {
             await registerSynthSounds();
 
             const editor = new StrudelMirror({
                 defaultOutput: webaudioOutput,
-
                 getTime: () =>
                     getAudioContext() ? getAudioContext().currentTime : 0,
-
                 transpiler,
                 root: editorRoot.current,
+
                 drawTime: [-2, 2],
-
-                // 👇 THIS DRAWS YOUR PIANO ROLL
                 onDraw: (haps, time) => {
-                    if (!pianoCanvas) return;
+                    if (!canvasRef.current) return;
+                    const ctx = canvasRef.current.getContext("2d");
 
-                    const ctx = pianoCanvas.getContext("2d");
-                    if (!ctx) return;
+                    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
                     drawPianoroll({
                         haps,
                         time,
                         ctx,
                         drawTime: [-2, 2],
-                        fold: 0
+                        fold: 0,
                     });
                 },
 
-                // Load instrument scope
                 prebake: async () => {
                     initAudioOnFirstClick();
 
@@ -72,7 +61,7 @@ const StrudelEditor = forwardRef(({ code, pianoCanvas }, ref) => {
             editorInstance.current = editor;
             editor.setCode(code);
         })();
-    }, [pianoCanvas]);  // <-- rerun when canvas becomes available
+    }, []);
 
     useEffect(() => {
         if (editorInstance.current) {
@@ -96,7 +85,24 @@ const StrudelEditor = forwardRef(({ code, pianoCanvas }, ref) => {
 
     return (
         <div className="strudel-editor-wrapper">
-            <div ref={editorRoot} className="strudel-editor"></div>
+
+            {/* Code Editor */}
+            <div
+                ref={editorRoot}
+                className="strudel-editor"
+                style={{ minHeight: "180px", marginBottom: "12px" }}
+            ></div>
+
+            {/* Piano Roll Canvas */}
+            <div className="card shadow-sm piano-roll-card">
+                <div className="card-header gradient fw-semibold">🎹 Piano Roll</div>
+                <canvas
+                    ref={canvasRef}
+                    width={900}
+                    height={180}
+                    className="piano-roll-canvas"
+                />
+            </div>
         </div>
     );
 });
