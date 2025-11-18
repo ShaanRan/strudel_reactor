@@ -68,3 +68,58 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+How to Use The App
+1. Type or paste Strudel template code
+
+(e.g., your tune, or the Barbie tune)
+
+2. Adjust controls
+
+Tempo
+
+Reverb
+
+Volume
+
+Pattern
+
+Filters
+
+EQ
+
+3. Click Preprocess
+
+Template tags are replaced with actual values.
+
+4. Click Play
+
+Audio starts immediately.
+
+5. Watch the visuals
+
+Canvas Piano Roll
+
+D3 Tempo History
+
+
+
+This project demonstrates:
+
+Integration of multiple music-processing libraries
+
+Live code editing with REPL behavior
+
+Custom preprocessing pipeline
+
+Real-time audio rendering
+
+Two visual systems (Canvas + D3)
+
+Professional UI design
+
+Complex React state management
+
+Modular component architecture

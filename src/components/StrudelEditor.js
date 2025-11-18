@@ -81,19 +81,21 @@ const StrudelEditor = forwardRef(({ code }, ref) => {
                 await editorInstance.current.stop();
             }
         },
+        setCode: (newCode) => {
+            editorInstance.current?.setCode(newCode);
+        }
     }));
+
 
     return (
         <div className="strudel-editor-wrapper">
 
-            {/* Code Editor */}
             <div
                 ref={editorRoot}
                 className="strudel-editor"
                 style={{ minHeight: "180px", marginBottom: "12px" }}
             ></div>
 
-            {/* Piano Roll Canvas */}
             <div className="card shadow-sm piano-roll-card">
                 <div className="card-header gradient fw-semibold">🎹 Piano Roll</div>
                 <canvas

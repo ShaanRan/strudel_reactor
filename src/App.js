@@ -1,4 +1,5 @@
 ﻿import React, { useMemo, useRef, useState } from "react";
+import { barbie_tune } from "./barbieSong";
 
 import StrudelEditor from "./components/StrudelEditor";
 import TempoGraph from "./components/TempoGraph";
@@ -62,15 +63,13 @@ export default function App() {
             )}
 
             <h2 className="text-center mb-4 fw-bold page-header">
-                🎶 Strudel Reactor — Part B 🎛️
+                🎶 SHAAN'S STRUDEL REACTER 🎛️
             </h2>
 
             <div className="row g-4">
 
-                {/* LEFT COLUMN — FULL MUSIC VISUAL AREA */}
                 <div className="col-md-6">
 
-                    {/* Strudel Code Editor + Piano Roll */}
                     <div className="card shadow-sm mb-3">
                         <div className="card-header gradient fw-semibold">
                             🎼 Strudel Live Editor
@@ -86,10 +85,8 @@ export default function App() {
                     </div>
                 </div>
 
-                {/* RIGHT COLUMN — Preprocessor + Controls + Deck */}
                 <div className="col-md-6">
 
-                    {/* Preprocessor Editor */}
                     <div className="card mb-3 shadow-sm">
                         <div className="card-header gradient fw-semibold">
                             Preprocessor Editor
@@ -107,7 +104,6 @@ export default function App() {
                         </div>
                     </div>
 
-                    {/* Controls */}
                     <div className="card shadow-sm mb-3">
                         <div className="card-header gradient fw-semibold">
                             Controls
@@ -122,7 +118,26 @@ export default function App() {
                                 <button className="btn btn-outline-danger" onClick={handleStop}>Stop</button>
                             </div>
 
-                            {/* p1 Radio */}
+
+                            <div className="mt-3 text-center">
+                                <button
+                                    className="btn btn-barbie"
+                                    onClick={() => {
+                                        setProcText(barbie_tune);
+
+                                        const processed = preprocess(barbie_tune);
+                                        editorRef.current?.setCode(processed);
+
+                                        setShowAlert(true);
+
+                                        setTimeout(() => editorRef.current?.play(), 300);
+                                    }}
+                                >
+                                    🎀 PLAY BARBIE SONG 🎀
+                                </button>
+                            </div>
+
+
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">p1 Radio</label>
                                 <div className="form-check">
@@ -135,9 +150,9 @@ export default function App() {
                                 </div>
                             </div>
 
-                            {/* Tempo */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">Tempo</label>
+
                                 <input
                                     type="range"
                                     min="0.5"
@@ -151,10 +166,18 @@ export default function App() {
                                         setTempoHistory(prev => [...prev, { time: Date.now(), tempo: t }]);
                                     }}
                                 />
-                                <div>Speed: {tempo.toFixed(2)}×</div>
-                            </div>
 
-                            {/* Volume */}
+                                <div>Speed: {tempo.toFixed(2)}×</div>
+
+                                <div className="progress mt-2 tempo-progress">
+                                    <div
+                                        className="progress-bar tempo-bar bg-success"
+                                        style={{ width: `${((tempo - 0.5) / 1.5) * 100}%` }}
+                                    ></div>
+                                </div>
+                            </div>
+>
+
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">Master Volume</label>
                                 <input
@@ -169,7 +192,6 @@ export default function App() {
                                 <div>Gain: {masterGain.toFixed(1)}</div>
                             </div>
 
-                            {/* Reverb */}
                             <div className="mb-3">
                                 <label className="form-label fw-semibold">Reverb Amount</label>
                                 <input
@@ -187,29 +209,131 @@ export default function App() {
                         </div>
                     </div>
 
-                    {/* Producer Deck */}
-                    <div className="card shadow-sm">
+                    <div className="card shadow-sm mb-3 producer-card">
                         <div className="card-header gradient fw-semibold">
                             🎛️ Producer Control Deck
                         </div>
+
                         <div className="card-body">
                             <div className="accordion" id="producerAccordion">
 
                                 <div className="accordion-item glass-acc">
-                                    <h2 className="accordion-header">
-                                        <button className="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#eqBox">
+                                    <h2 className="accordion-header" id="eqHeading">
+                                        <button className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#eqBox"
+                                            aria-expanded="false">
                                             🎚️ Equalizer (EQ)
                                         </button>
                                     </h2>
-
-                                    <div id="eqBox" className="accordion-collapse collapse">
+                                    <div id="eqBox" className="accordion-collapse collapse" data-bs-parent="#producerAccordion">
                                         <div className="accordion-body">
-                                            <label>Bass</label>
+
+                                            <label className="form-label">Bass</label>
                                             <input type="range" className="form-range" min="-1" max="1" step="0.1" />
-                                            <label className="mt-2">Mid</label>
+
+                                            <label className="form-label mt-2">Mid</label>
                                             <input type="range" className="form-range" min="-1" max="1" step="0.1" />
-                                            <label className="mt-2">Treble</label>
+
+                                            <label className="form-label mt-2">Treble</label>
                                             <input type="range" className="form-range" min="-1" max="1" step="0.1" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header" id="waveHeading">
+                                        <button className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#waveBox">
+                                            🎵 Synth Waveform
+                                        </button>
+                                    </h2>
+                                    <div id="waveBox" className="accordion-collapse collapse" data-bs-parent="#producerAccordion">
+                                        <div className="accordion-body">
+                                            <select className="form-select">
+                                                <option>saw</option>
+                                                <option>square</option>
+                                                <option>sine</option>
+                                                <option>triangle</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header" id="filterHeading">
+                                        <button className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#filterBox">
+                                            🎧 Filters
+                                        </button>
+                                    </h2>
+                                    <div id="filterBox" className="accordion-collapse collapse" data-bs-parent="#producerAccordion">
+                                        <div className="accordion-body">
+
+                                            <label className="form-label">Low-Pass Filter</label>
+                                            <input type="range" min="200" max="15000" step="100" className="form-range" />
+
+                                            <label className="form-label mt-2">High-Pass Filter</label>
+                                            <input type="range" min="20" max="2000" step="50" className="form-range" />
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header" id="drumHeading">
+                                        <button className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#drumBox">
+                                            🥁 Drum Machine
+                                        </button>
+                                    </h2>
+                                    <div id="drumBox" className="accordion-collapse collapse" data-bs-parent="#producerAccordion">
+                                        <div className="accordion-body">
+
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" />
+                                                <label className="form-check-label">Kick</label>
+                                            </div>
+
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" />
+                                                <label className="form-check-label">Snare</label>
+                                            </div>
+
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="checkbox" />
+                                                <label className="form-check-label">Hi-Hat</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="accordion-item glass-acc">
+                                    <h2 className="accordion-header" id="reverbHeading">
+                                        <button className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#reverbBox">
+                                            🎤 Reverb Modes
+                                        </button>
+                                    </h2>
+                                    <div id="reverbBox" className="accordion-collapse collapse" data-bs-parent="#producerAccordion">
+                                        <div className="accordion-body">
+                                            <select className="form-select">
+                                                <option>Room</option>
+                                                <option>Hall</option>
+                                                <option>Plate</option>
+                                                <option>Cathedral</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -217,6 +341,7 @@ export default function App() {
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>

@@ -7,24 +7,28 @@
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\components\\strudeleditor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\strudeleditor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\components\\pianoroll.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\pianoroll.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\app.test.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.test.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\components\\strudeleditor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\strudeleditor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\barbiesong.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\barbiesong.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\components\\pianoroll.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\pianoroll.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\sarav\\downloads\\reactassignment\\strudel_reactor\\src\\components\\tempograph.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -66,21 +70,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 13,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PianoRoll.js",
-              "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\PianoRoll.js",
-              "RelativeDocumentMoniker": "src\\components\\PianoRoll.js",
-              "ToolTip": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\PianoRoll.js",
-              "RelativeToolTip": "src\\components\\PianoRoll.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-18T09:32:49.116Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -99,7 +90,31 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "barbieSong.js",
+              "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\barbieSong.js",
+              "RelativeDocumentMoniker": "src\\barbieSong.js",
+              "ToolTip": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\barbieSong.js",
+              "RelativeToolTip": "src\\barbieSong.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-18T12:30:13.671Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "PianoRoll.js",
+              "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\PianoRoll.js",
+              "RelativeDocumentMoniker": "src\\components\\PianoRoll.js",
+              "ToolTip": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\PianoRoll.js",
+              "RelativeToolTip": "src\\components\\PianoRoll.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-18T09:32:49.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TempoGraph.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\TempoGraph.js",
               "RelativeDocumentMoniker": "src\\components\\TempoGraph.js",
@@ -111,20 +126,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "StrudelEditor.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\StrudelEditor.js",
               "RelativeDocumentMoniker": "src\\components\\StrudelEditor.js",
               "ToolTip": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\components\\StrudelEditor.js",
               "RelativeToolTip": "src\\components\\StrudelEditor.js",
-              "ViewState": "AQIAAEwAAAAAAAAAAADwv2gAAAAAAAAA",
+              "ViewState": "AQIAADkAAAAAAAAAAAAiwFcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-07T10:16:47.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T10:16:47.642Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "logo.svg",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\logo.svg",
               "RelativeDocumentMoniker": "src\\logo.svg",
@@ -136,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\public\\index.html",
               "RelativeDocumentMoniker": "public\\index.html",
@@ -148,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "App.test.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\App.test.js",
               "RelativeDocumentMoniker": "src\\App.test.js",
@@ -160,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\index.css",
               "RelativeDocumentMoniker": "src\\index.css",
@@ -168,12 +182,11 @@
               "RelativeToolTip": "src\\index.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-03T01:15:36.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T01:15:36.514Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "index.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\index.js",
               "RelativeDocumentMoniker": "src\\index.js",
@@ -191,14 +204,14 @@
               "RelativeDocumentMoniker": "src\\App.js",
               "ToolTip": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\App.js",
               "RelativeToolTip": "src\\App.js",
-              "ViewState": "AQIAANsAAAAAAAAAAAAAwOkAAAAAAAAA",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAiwEEAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-11-03T00:58:32.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "manifest.json",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\public\\manifest.json",
               "RelativeDocumentMoniker": "public\\manifest.json",
@@ -210,20 +223,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\App.css",
               "RelativeDocumentMoniker": "src\\App.css",
               "ToolTip": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\App.css",
               "RelativeToolTip": "src\\App.css",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAUwIUAAAAAAAAA",
+              "ViewState": "AQIAAMAAAAAAAAAAAAAUwMkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-03T00:58:01.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T00:58:01.387Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "reportWebVitals.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\reportWebVitals.js",
               "RelativeDocumentMoniker": "src\\reportWebVitals.js",
@@ -235,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "setupTests.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\setupTests.js",
               "RelativeDocumentMoniker": "src\\setupTests.js",
@@ -247,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "tunes.js",
               "DocumentMoniker": "C:\\Users\\sarav\\Downloads\\ReactAssignment\\strudel_reactor\\src\\tunes.js",
               "RelativeDocumentMoniker": "src\\tunes.js",

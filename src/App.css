@@ -1,6 +1,4 @@
-/* -------------------------
- GLOBAL PAGE STYLING
--------------------------- */
+
 
 body {
     background: #0d0d16;
@@ -9,7 +7,19 @@ body {
     margin: 0;
 }
 
-/* Page Header */
+
+.tempo-progress {
+    background: #2a2a42;
+    height: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #3a3a55;
+}
+
+.tempo-bar {
+    transition: width 0.25s ease-out;
+}
+
 .page-header {
     font-size: 2rem;
     color: #ffffff;
@@ -18,9 +28,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* -------------------------
- CARD + SECTION STYLES
--------------------------- */
 
 .card {
     background: #141428;
@@ -39,14 +46,10 @@ body {
     font-size: 1.05rem;
 }
 
-/* Card body padding fix */
+
 .card-body {
     padding: 1rem 1.25rem;
 }
-
-/* -------------------------
- STRUDEL EDITOR + PIANO ROLL
--------------------------- */
 
 .strudel-editor-wrapper {
     border: 1px solid #2b2b40;
@@ -55,34 +58,28 @@ body {
     padding: 10px;
 }
 
-/* ------- UPDATED EDITOR SIZE -------- */
 .strudel-editor {
     background: #10101f;
     border: 1px solid #36364f;
-    min-height: 100px; /* UPDATED: smaller editor */
-    max-height: 800px; /* UPDATED: prevents giant size */
-    height: 800px; /* UPDATED: stable height */
+    min-height: 100px;
+    max-height: 800px;
+    height: 800px;
     overflow-y: auto;
     border-radius: 6px;
 }
 
-/* ------- UPDATED PIANO ROLL -------- */
 .piano-roll-canvas {
     background: #1b1b25;
     border: 1px solid #36364f;
     border-radius: 8px;
-    margin-top: 8px; /* UPDATED: smaller spacing */
-    height: 90px; /* UPDATED: shorter roll */
+    margin-top: 8px;
+    height: 90px;
 }
 
-/* ADD: reduce graph spacing */
 .graph-section {
-    margin-top: 10px; /* UPDATED */
+    margin-top: 10px;
 }
 
-/* -------------------------
- BUTTON STYLES
--------------------------- */
 
 .btn {
     padding: 6px 14px;
@@ -100,14 +97,12 @@ body {
         transform: translateY(-2px);
     }
 
-/* Stop button */
+
 .btn-outline-danger {
     border-width: 2px;
 }
 
-/* -------------------------
- SLIDERS + FORM ELEMENTS
--------------------------- */
+
 
 .form-range {
     accent-color: #6f00ff;
@@ -133,9 +128,7 @@ body {
     accent-color: #6f00ff;
 }
 
-/* -------------------------
- PRODUCER DECK (GLASS STYLE)
--------------------------- */
+
 
 .producer-card {
     backdrop-filter: blur(10px);
@@ -170,9 +163,7 @@ body {
     padding: 15px;
 }
 
-/* -------------------------
- STATUS DOT
--------------------------- */
+
 
 .pulse-dot {
     width: 12px;
@@ -201,9 +192,6 @@ body {
     }
 }
 
-/* -------------------------
- D3 GRAPH
--------------------------- */
 
 svg {
     background: #10101b;
@@ -211,15 +199,10 @@ svg {
     border-radius: 10px;
 }
 
-    /* graph text */
     svg text {
         fill: #ccc;
         font-size: 0.75rem;
     }
-
-/* -------------------------
- FOOTER
--------------------------- */
 
 footer {
     margin-top: 30px;
@@ -227,3 +210,22 @@ footer {
     border-top: 1px solid #33334d;
     color: #bbb;
 }
+
+.btn-barbie {
+    background: #ff3ecb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    box-shadow: 0 0 15px #ff6fe9, 0 0 25px #ff2dcf;
+    transition: 0.25s ease;
+    width: 100%;
+    max-width: 360px;
+}
+
+    .btn-barbie:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #ff9df7, 0 0 30px #ff31d3;
+    }
